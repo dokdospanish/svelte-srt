@@ -115,5 +115,26 @@ export default [
     replaceWith: '0|cero|1|uno|2|dos|3|tres|4|cuatro|5|cinco|6|seis|7|siete|8|ocho|9|nueve|10|diez',
     prevNeedle: '',
     nextNeedle: '',
-  }
+  },
+
+   {
+    desc: 'No more than 3 repeating characters',
+    mode: 'regex',
+    sensitive: true,
+    needle: '(([a-zA-Z\\?!¿¡])\\2{2,})', /* backreference */
+    /* What about numbers??? 1111 etc. Limit to a-zA-Z\?\!¿¡ */
+    replaceWith: '$2$2$2',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+/*   {
+    desc: 'No more than 3 repeating characters',
+    mode: 'regex',
+    sensitive: true,
+    needle: '(.)\\1{2,}',
+    replaceWith: 'x',
+    prevNeedle: '',
+    nextNeedle: '',
+  } */
 ];

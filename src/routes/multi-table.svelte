@@ -7,8 +7,10 @@
   import rules from './rules'
   import Cell from './subtitle-cell.svelte'
 
-  const USE_LOCAL = false;
-  const FILE_URL = 'https://raw.githubusercontent.com/dokdospanish/test-files/main/srt/EP24.srt';
+  const FILE_NAME = 'auto-edited/EP24_edited.srt'
+
+  const USE_LOCAL = true;
+  const FILE_URL = 'https://raw.githubusercontent.com/dokdospanish/test-files/main/srt/' + encodeURI(FILE_NAME);
   let originalSRT = [];
   let leftSearch;
   let rightSearch;
