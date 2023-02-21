@@ -158,4 +158,14 @@ export default [
     prevNeedle: '',
     nextNeedle: '',
   },
+
+  {
+    desc: 'Calentito → Calientito',
+    mode: 'regex',
+    sensitive: true,
+    needle: '\\b(c|C)alentit(o|a)',
+    replaceWith: '$1alientit$2',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
 ];
