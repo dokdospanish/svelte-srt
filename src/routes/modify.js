@@ -33,7 +33,7 @@ function replacerFactory(rules) {
       // Don't apply changes if prev/next context requirements not met
       const prevRx = new RegExp(regexEscape(prevNeedle, 'regex'));
       const nextRx = new RegExp(regexEscape(nextNeedle, 'regex'));
-      if (!prevRx.test(prev) || !nextRx.test(next)) return curr;
+      if (prev && !prevRx.test(prev) || next && !nextRx.test(next)) return curr;
 
       // Prep regex
       const flags = 'gums' + ((!sensitive) ? 'i' : ''); //global, unicode, multiline (^ and $ can match many times), singleline (. matches \n)

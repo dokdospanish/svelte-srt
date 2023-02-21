@@ -1,6 +1,19 @@
 export default `
 1
 00:00:11,544 --> 00:00:12,682
+Hello Hello HELLO por eso
+
+1
+00:00:11,544 --> 00:00:12,682
+Bunnies son lo mejor
+
+1
+00:00:11,544 --> 00:00:12,682
+Verdad que sí mis Bunnies
+Bunnies Bunnies
+
+1
+00:00:11,544 --> 00:00:12,682
 Hello Hello HELLO hello hello HELLO
 
 2
@@ -33,6 +46,10 @@ Eeeeey Nooooooooo
 8
 00:00:11,544 --> 00:00:12,682
 whaaaaat????????????!!!!!!!!
+
+9
+00:00:11,544 --> 00:00:12,682
+Nos divertimos, adiós
 `;
 // LEARNT: default export string on top of file must not be assigned to variable.
 // BUT named export needs the assignment (and then use curly braces in the import)
