@@ -15,6 +15,16 @@ export default [
   },
 
   {
+    desc: 'Double spaces',
+    mode: 'normal',
+    sensitive: true,
+    needle: '  ',
+    replaceWith: ' ',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+  {
     desc: 'Space after hyphen at start of line',
     mode: 'regex',
     sensitive: true,
@@ -52,7 +62,7 @@ export default [
     desc: 'TWO FULL sentences in one line? Spit if not already 3 lines.',
     mode: 'regex',
     sensitive: true,
-    needle: `\\A(?=${pattern})(?!${pattern}${pattern})([^-][^\n]*(?:[^\\.]\\.|!|\\?)) ((?:¡|¿)*[A-ZÁÉÍÓÚ][^\n]*(?:[^\\.]\\.|!|\\?)$(?:\n?(?=\\[))?)(?!.*\n)`,
+    needle: `\\A(?=${pattern})(?!${pattern}${pattern})([^-][^\n]*(?:[^\\.]\\.|!|\\?)) ((?:¡|¿)*[A-ZÁÉÍÓÚ][^\n]*(?:\\.|!|\\?)$(?:\n?(?=\\[))?)(?!.*\n)`,
     /* 
     \A[^\n]*(?:[^\.]\.|!|\?) (?:¡|¿)*[A-ZÁÉÍÓÚ][^\n]*(?:[^\.]\.|!|\?)$(?!.*\n.*\n)
     \A		String start
@@ -94,13 +104,14 @@ export default [
   },
 
   {
-    desc: 'Numbers UPPERCASE',
+    desc: 'Numbers UPPERCASE (for TWEENERS)',
     mode: 'list',
     sensitive: true,
-    needle: '(?<=(^\\W*)|\\[)(\\d|10)(?!\\d|º|ª|ᵉʳ)',
-    /* When using  LIST, use lookarounds, since "non-capturing groups" are also returned as matches
+    needle: '(?<=(?:[\\.\\?!]\\s|\\[)(?:[-\\W] |[¿¡\\(])?)(?<!\\+-)(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
+    /* When using  LIST, use lookarounds, since we need to capture only one group
+    because "non-capturing groups" are also passed as matches to replace function
     Keep assertions inside these lookarounds
-    (Matches not found in the list's keys They will be skiped) */
+    (Matches not found in the list's keys will be skiped) */
     replaceWith: '0|Cero|1|Uno|2|Dos|3|Tres|4|Cuatro|5|Cinco|6|Seis|7|Siete|8|Ocho|9|Nueve|10|Diez',
     /* Currenlty, no way to escape pipe in list replacement. */
     prevNeedle: '',
@@ -108,10 +119,20 @@ export default [
   },
 
   {
+    desc: 'Numbers UPPERCASE (for STARTERS)',
+    mode: 'list',
+    sensitive: true,
+    needle: '(?<=\\A\\[?(?:[-\\W] |[¿¡\\(])?)(?<!\\+-)(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
+    replaceWith: '0|Cero|1|Uno|2|Dos|3|Tres|4|Cuatro|5|Cinco|6|Seis|7|Siete|8|Ocho|9|Nueve|10|Diez',
+    prevNeedle: '[\\.\\?!\\]](?:\\[.*?\\])?\\z',
+    nextNeedle: '',
+  },
+
+  {
     desc: 'Numbers LOWERCASE',
     mode: 'list',
     sensitive: true,
-    needle: '(?<!\\d)(\\d|10)(?!\\d|º|ª|ᵉʳ)',
+    needle: '(?<![\\d\\+\\-])(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
     replaceWith: '0|cero|1|uno|2|dos|3|tres|4|cuatro|5|cinco|6|seis|7|siete|8|ocho|9|nueve|10|diez',
     prevNeedle: '',
     nextNeedle: '',
@@ -128,13 +149,13 @@ export default [
     nextNeedle: '',
   },
 
-/*   {
-    desc: 'No more than 3 repeating characters',
+   {
+    desc: 'Number abbreviation',
     mode: 'regex',
     sensitive: true,
-    needle: '(.)\\1{2,}',
-    replaceWith: 'x',
+    needle: '(n|N)º',
+    replaceWith: '$1úmero', /* OR at least '$1.º' */
     prevNeedle: '',
     nextNeedle: '',
-  } */
+  },
 ];
