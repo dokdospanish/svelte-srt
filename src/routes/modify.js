@@ -28,23 +28,22 @@ function replacerFactory(rules) {
         nextNeedle
       } = rule;
 
+      if (!needle) return curr;
+
       // Don't apply changes if prev/next context requirements not met
       const prevRx = new RegExp(regexEscape(prevNeedle, 'regex'));
       const nextRx = new RegExp(regexEscape(nextNeedle, 'regex'));
       if (!prevRx.test(prev) || !nextRx.test(next)) return curr;
 
-      // NORMAL replace
-      if (mode === 'normal') return curr.replaceAll(needle, replaceWith);
-      
-      // Prep for whole/regex/list replace
+      // Prep regex
       const flags = 'gums' + ((!sensitive) ? 'i' : ''); //global, unicode, multiline (^ and $ can match many times), singleline (. matches \n)
-      const escapedNeedle = regexEscape(needle, mode); //'whole' or 'regex'      
+      const escapedNeedle = regexEscape(needle, mode); // 'normal' | 'whole' | 'regex' | 'line'      
       const rx = new RegExp(escapedNeedle, flags);
 
-      // REGEX/WHOLE replace
+      // LIST replace
       if (mode === 'list') return curr.replaceAll(rx, makeReplacerCallback(replaceWith));
 
-      // LIST replace
+      // NORMAL/REGEX/WHOLE replace
       return curr.replaceAll(rx, replaceWith)
     }
   });
@@ -75,20 +74,22 @@ function regexEscape(s, mode) {
   // https://github.com/slevithan/xregexp/issues/228
   // Word boundary assertion (\b) in JS does not support unicode (accents, hangul)
   // TODO: support for Arabic, Thai, DIGITS, etc. ("hello_world 123 こんにちは สวัสดี")
-  const unicodeWordBoundary = '(?:(?<=\\p{L}\\p{M}*)(?!\\p{L}\\p{M}*)|(?<!\\p{L}\\p{M}*)(?=\\p{L}\\p{M}*))';
+  const UNICODE_WORD_BOUNDARY = '(?:(?<=\\p{L}\\p{M}*)(?!\\p{L}\\p{M}*)|(?<!\\p{L}\\p{M}*)(?=\\p{L}\\p{M}*))';
+  const META_CHARS_RX = /[.*+?^${}()|[\]\\]/g
+
   switch (mode) {
     case 'normal':
-      return s;
+      return s.replace(META_CHARS_RX, '\\$&'); /* Lit. slash followed by $& (each corresponding match) */
 
     case 'whole':
       // Escape metacharacters and add boundaries
-      return unicodeWordBoundary + s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + unicodeWordBoundary;
+      return UNICODE_WORD_BOUNDARY + s.replace(META_CHARS_RX, '\\$&') + UNICODE_WORD_BOUNDARY;
       
     case 'regex':
     case 'list':
       // Add support for begining/end of string.Consider adding \Z -> (?=\n?$(?!\n))
       // Double backslash as required by RegExp
-      return s.replaceAll('\\A', '(?<!\n)^').replaceAll('\\z', '$(?!\n)').replaceAll('\\b', unicodeWordBoundary);
+      return s.replaceAll('\\A', '(?<!\n)^').replaceAll('\\z', '$(?!\n)').replaceAll('\\b', UNICODE_WORD_BOUNDARY);
   }
 
   throw Error('Choose a matching mode.')

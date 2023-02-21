@@ -17,7 +17,7 @@ export default [
   {
     desc: 'Double spaces',
     mode: 'normal',
-    sensitive: true,
+    sensitive: false,
     needle: '  ',
     replaceWith: ' ',
     prevNeedle: '',
