@@ -23,15 +23,7 @@ export default [
     prevNeedle: '',
     nextNeedle: '',
   },
-  {
-    desc: 'No ellipses character (2)',
-    mode: 'normal',
-    sensitive: false,
-    needle: '…',
-    replaceWith: '...',
-    prevNeedle: '',
-    nextNeedle: '',
-  },
+
   {
     desc: 'No ellipses character',
     mode: 'normal',
