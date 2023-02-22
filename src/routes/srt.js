@@ -1,7 +1,7 @@
 export default `
 1
 00:00:11,544 --> 00:00:12,682
-Hello Hello HELLO por eso
+Hello… Hello HELLO por eso…
 
 1
 00:00:11,544 --> 00:00:12,682

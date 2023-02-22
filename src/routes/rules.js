@@ -25,6 +25,16 @@ export default [
   },
 
   {
+    desc: 'No ellipses character',
+    mode: 'normal',
+    sensitive: false,
+    needle: '…',
+    replaceWith: '...',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+  {
     desc: 'Space after hyphen at start of line',
     mode: 'regex',
     sensitive: true,
@@ -168,4 +178,5 @@ export default [
     prevNeedle: '',
     nextNeedle: '',
   },
+  
 ];
