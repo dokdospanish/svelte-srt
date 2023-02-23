@@ -2,12 +2,13 @@ export default `
 WIP TEST
 1
 00:00:11,544 --> 00:00:12,682
--Text
--Text
+¡Soy el nº 1!
+¡Soy el nº1!
+[¡Lo logré! ¡Soy el número 1!]
 
 1
 00:00:11,544 --> 00:00:12,682
--Text/ -Text nº3 n.º4
+-text/ -Text nº3 n.º4
 -Text /-Textnº 5 N.º
 
 1
