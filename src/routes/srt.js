@@ -2,11 +2,20 @@ export default `
 WIP TEST
 1
 00:00:11,544 --> 00:00:12,682
+"This quote needs a period" 2ºᵉʳª°
+Tween above
+
+1
+00:00:11,544 --> 00:00:12,682
+So does this 2ººᵉʳª°
+
+1
+00:00:11,544 --> 00:00:12,682
 Hello… Hello HELLO por eso…
 
 1
 00:00:11,544 --> 00:00:12,682
-Bunnies son lo mejor
+Bunnies son lololo lo 3 lo mejor (2) 2 -2 2- 확인3 rrr8
 
 1
 00:00:11,544 --> 00:00:12,682

@@ -48,7 +48,7 @@ export default [
     desc: 'Add period at end of line (for TWEENERS)',
     mode: 'regex',
     sensitive: true,
-    needle: `(?<=^[^\[\n]*)([${word}]"?)$(?!${end})(?!\n[¿¡"]?[${low}0-9])`,
+    needle: `(?<=^[^\[\n]*)([${word}]["ºᵉʳª°]*)$(?!${end})(?!\n[¿¡"]?[${low}0-9])`,
     replaceWith: '$1.',
     prevNeedle: '',
     nextNeedle: '',
@@ -58,10 +58,10 @@ export default [
     desc: 'Add period at end of line (for ENDERS)',
     mode: 'regex',
     sensitive: true,
-    needle: `(?<=^[^\[\n]*)([${word}]"?)(?=${end})`,
+    needle: `(?<=^[^\[\n]*)([${word}]["ºᵉʳª°]*)(?=${end})`,
     replaceWith: '$1.',
     prevNeedle: '',
-    nextNeedle: `^(- ?)?[¿¡"]?[^${low}0-9]`,
+    nextNeedle: `^(- ?)?[¿¡"]?[^${low}0-9\\-\\s¿¡"]`,
     /*
     Note that it only checks the very next subtitle
     (tough luck if followd by on-screen text AND THEN sentence continuation)
@@ -114,6 +114,16 @@ export default [
   },
 
   {
+    desc: 'Number abbreviation',
+    mode: 'regex',
+    sensitive: true,
+    needle: '(n|N)º(\\d+)?', /* Add space between 'nº' and digit (if any)*/
+    replaceWith: '$1úmero $2', /* OR at least '$1.º' */
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+  {
     desc: 'Numbers UPPERCASE (for TWEENERS)',
     mode: 'list',
     sensitive: true,
@@ -142,7 +152,7 @@ export default [
     desc: 'Numbers LOWERCASE',
     mode: 'list',
     sensitive: true,
-    needle: '(?<![\\d\\+\\-])(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
+    needle: `(?<=\\s['"¿¡\\*\\(\\[\\{]?)(\\d|10)(?=([\\.,;:%'"\\?!\\*\\)\\]\\}]|\\.\\.\\.)?(?:\\s|$))`,
     replaceWith: '0|cero|1|uno|2|dos|3|tres|4|cuatro|5|cinco|6|seis|7|siete|8|ocho|9|nueve|10|diez',
     prevNeedle: '',
     nextNeedle: '',
@@ -155,16 +165,6 @@ export default [
     needle: '(([a-zA-Z\\?!¿¡])\\2{2,})', /* backreference */
     /* What about numbers??? 1111 etc. Limit to a-zA-Z\?\!¿¡ */
     replaceWith: '$2$2$2',
-    prevNeedle: '',
-    nextNeedle: '',
-  },
-
-   {
-    desc: 'Number abbreviation',
-    mode: 'regex',
-    sensitive: true,
-    needle: '(n|N)º',
-    replaceWith: '$1úmero', /* OR at least '$1.º' */
     prevNeedle: '',
     nextNeedle: '',
   },
