@@ -7,12 +7,12 @@ WIP TEST
 
 1
 00:00:11,544 --> 00:00:12,682
--Text/ -Text
--Text /-Text
+-Text/ -Text nº3 n.º4
+-Text /-Textnº 5 N.º
 
 1
 00:00:11,544 --> 00:00:12,682
--Text more text/-Text more text
+-Text more text/-Text more text n° N° N.° n.°
 -Text more text / -Text more text
 
 1

@@ -124,11 +124,21 @@ export default [
   },
 
   {
-    desc: 'Number abbreviation',
+    desc: 'Space after number abbreviation',
     mode: 'regex',
     sensitive: true,
-    needle: '(n|N)º(\\d+)?', /* Add space between 'nº' and digit (if any)*/
-    replaceWith: '$1úmero $2', /* OR at least '$1.º' */
+    needle: '\\b([nN]\\.?[º°])(\\d+)?',
+    replaceWith: '$1 $2',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+  {
+    desc: 'Remove number abbreviation',
+    mode: 'regex',
+    sensitive: true,
+    needle: '\\b(n|N)\\.?[º°]', /* Add space between 'nº' and digit (if any)*/
+    replaceWith: '$1úmero', /* OR at least '$1.º' */
     prevNeedle: '',
     nextNeedle: '',
   },
