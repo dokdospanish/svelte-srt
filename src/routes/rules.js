@@ -45,6 +45,16 @@ export default [
   },
 
   {
+    desc: 'Space around hyphen in this dialog pattern: -Dialog/-Dialog',
+    mode: 'regex',
+    sensitive: true,
+    needle: '(?<=^-[^\\/]+)( ?\\/ ?- ?)(?=\\S)',
+    replaceWith: ' / - ',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+  {
     desc: 'Add period at end of line (for TWEENERS)',
     mode: 'regex',
     sensitive: true,

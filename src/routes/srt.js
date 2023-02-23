@@ -2,16 +2,18 @@ export default `
 WIP TEST
 1
 00:00:11,544 --> 00:00:12,682
-"This quote needs a period" 2ºᵉʳª°
-Tween above
+-Text
+-Text
 
 1
 00:00:11,544 --> 00:00:12,682
-So does this 2ººᵉʳª°
+-Text/ -Text
+-Text /-Text
 
 1
 00:00:11,544 --> 00:00:12,682
-Hello… Hello HELLO por eso…
+-Text more text/-Text more text
+-Text more text / -Text more text
 
 1
 00:00:11,544 --> 00:00:12,682
