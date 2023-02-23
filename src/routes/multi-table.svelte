@@ -8,7 +8,7 @@
   import Cell from './subtitle-cell.svelte'
 
   const FILE_NAME = 'EP25.srt'
-  const USE_LOCAL = true;
+  const USE_LOCAL = false;
 
   const FILE_URL = 'https://raw.githubusercontent.com/dokdospanish/test-files/main/srt/' + encodeURI(FILE_NAME);
   let originalSRT = [];
@@ -115,7 +115,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     /* white-space: nowrap; */
-    white-space: pre-line;
+    /* white-space: pre-line; */
+    white-space: pre; /* SHOW DOUBLE SPACES! */
   /*   display: grid;
     place-items: center;*/
     text-align: center; 
