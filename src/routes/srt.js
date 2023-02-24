@@ -4,7 +4,11 @@ WIP TEST
 00:00:11,544 --> 00:00:12,682
 ¡Soy el nº 1!
 ¡Soy el nº1!
+this is s colon:
+10
 [¡Lo logré! ¡Soy el número 1!]
+- Hagámoslo. 
+- 5, seis, siete, ocho!
 
 1
 00:00:11,544 --> 00:00:12,682

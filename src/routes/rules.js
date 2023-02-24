@@ -147,7 +147,7 @@ export default [
     desc: 'Numbers UPPERCASE (for TWEENERS)',
     mode: 'list',
     sensitive: true,
-    needle: '(?<=(?:[\\.\\?!]\\s|\\[)(?:[-\\W] |[¿¡\\(])?)(?<!\\+-)(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
+    needle: '(?<=(?:[\\.\\?!]\\s+|\\[)(?:[-\\W] )?(?:[¿¡\\(])?)(?<!\\+-)(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
     /* When using  LIST, use lookarounds, since we need to capture only one group
     because "non-capturing groups" are also passed as matches to replace function
     Keep assertions inside these lookarounds
@@ -174,6 +174,18 @@ export default [
     sensitive: true,
     needle: `(?<=\\s['"¿¡\\*\\(\\[\\{]?)(\\d|10)(?=([\\.,;:%'"\\?!\\*\\)\\]\\}])*(?:\\s|$))`,
     replaceWith: '0|cero|1|uno|2|dos|3|tres|4|cuatro|5|cinco|6|seis|7|siete|8|ocho|9|nueve|10|diez',
+    prevNeedle: '',
+    nextNeedle: '',
+  },
+
+  {
+    desc: 'GUESS numbers (Beginning line, not preceded by period. New sentence?)',
+    /* Same as 'Numbers UPPERCASE' but without previous line check  */
+    mode: 'list',
+    sensitive: true,
+    needle: ``,
+    needle: '(?<=\\A\\[?(?:[-\\W] |[¿¡\\(])?)(?<!\\+-)(\\d|10)(?!\\d|\\s?[ºᵉʳª°])',
+    replaceWith: '0|Cero|1|Uno|2|Dos|3|Tres|4|Cuatro|5|Cinco|6|Seis|7|Siete|8|Ocho|9|Nueve|10|Diez',
     prevNeedle: '',
     nextNeedle: '',
   },
